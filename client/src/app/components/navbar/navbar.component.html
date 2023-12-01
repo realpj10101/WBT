@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+    <section class="left">
+        <a routerLink="/" class="brand">
+            <mat-icon>eco</mat-icon>
+            WBT
+        </a>
+    </section>
+    <section class="right">
+        @if (player$ | async; as player) {
+        <button [mat-menu-trigger-for]="appMenu" class="menu-button" mat-mini-fab>
+            <span>{{player.email[0] | titlecase}}</span>
+        </button>
+        }
+        @else {
+        <button routerLink="account/register" mat-raised-button color="accent">Register</button>
+        <button routerLink="account/login" mat-raised-button color="accent">Login</button>
+        }
+
+        <mat-menu #appMenu [class]="'mat-menu'">
+            @if (player$ | async; as player) {
+            <div class="player-info">
+                <div class="profile-image">
+                    <p>
+                        {{player.name[0] | titlecase}}
+                    </p>
+                </div>
+                <div>
+                    <p>{{player.id}}</p>
+                    <p class="email">{{player.name}}</p>
+                </div>
+            </div>
+            }
+            <mat-divider></mat-divider>
+            <mat-list>
+                <mat-list-item>
+                    <div routerLink="/" mat-button class="menu-items">
+                        <mat-icon>edit_note</mat-icon>
+                        Edit Profile
+                    </div>
+                </mat-list-item>
+                <mat-list-item [routerLink]="['/member/get-all']" routerLinkActive="router-link-active">
+                    <div class="menu-items">
+                        <mat-icon>flaky</mat-icon>'
+                        All Members
+                    </div>
+                </mat-list-item>
+                <mat-list-item [routerLink]="['/message/inbox']" routerLinkActive="router-link-active">
+                    <div class="menu-items">
+                        Message
+                    </div>
+                </mat-list-item>
+            </mat-list>
+
+            <mat-divider></mat-divider>
+            <div class="logout">
+                <button mat-raised-button (click)="logOut()">Logout</button>
+            </div>
+        </mat-menu>
+    </section>
+</mat-toolbar>

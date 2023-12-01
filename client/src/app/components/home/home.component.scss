@@ -1,0 +1,13 @@
+.showPlayers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+
+    .list {
+        border-style: inset;
+        border-width: 10px;
+        border-color: green;
+    }
+};

@@ -1,0 +1,14 @@
+<div class="showPlayers">
+    <button (click)="showAllPlayers()" mat-fab color="primary">Show Players</button>
+
+    @for (player of allPlayers$ | async; track $index) {
+    <div class="list">
+        <h1>
+            {{player.id}}
+            <br>
+            {{player.email}}
+        </h1>
+        <button routerLink="chat" mat-raised-button color="primary">Chat</button>
+    </div>
+    }
+</div>
